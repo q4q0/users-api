@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 	"users-api/configs"
+	"users-api/routes"
 
 	"github.com/gorilla/mux"
 )
@@ -12,6 +13,7 @@ import (
 func main() {
 	router := mux.NewRouter()
 	configs.ConnectDB()
+	routes.UserRoute(router) //add this
 
 	router.HandleFunc("/status", func(rw http.ResponseWriter, r *http.Request) {
 		rw.Header().Set("Content-Type", "application/json")
